@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "wdvTtnMzqg7pk0hR/8SDO5L2EW7sMSBZm5MHFe7fqcg=",
+  "Source": "movie-ticket-booking",
+  "BasePath": "_content/movie-ticket-booking",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
