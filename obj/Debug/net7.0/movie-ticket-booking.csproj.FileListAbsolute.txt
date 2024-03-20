@@ -92,3 +92,5 @@ D:\Semester-8\movie-ticket-booking-backend\movie-ticket-booking\obj\Debug\net7.0
 D:\Semester-8\movie-ticket-booking-backend\movie-ticket-booking\obj\Debug\net7.0\movie-ticket-booking.pdb
 D:\Semester-8\movie-ticket-booking-backend\movie-ticket-booking\obj\Debug\net7.0\movie-ticket-booking.genruntimeconfig.cache
 D:\Semester-8\movie-ticket-booking-backend\movie-ticket-booking\obj\Debug\net7.0\ref\movie-ticket-booking.dll
+D:\Semester-8\movie-ticket-booking-backend\movie-ticket-booking\bin\Debug\net7.0\Npgsql.dll
+D:\Semester-8\movie-ticket-booking-backend\movie-ticket-booking\bin\Debug\net7.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll

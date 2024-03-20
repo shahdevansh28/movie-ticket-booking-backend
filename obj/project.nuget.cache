@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "YC8tSr+E36k0O03m1CR33DfBxG6LRmZcl4A5swrNy4xFItIgSjVW7bEs4eytWcskJvwGbyTiDky7GhfYxfAZpQ==",
+  "dgSpecHash": "Kibal16vXtlphldAts7dyPZX2cvUB6Vtz/YaqeP02PgN52WIJzS3P2xF8J7EOgKD5A3MILnFBaCDJA6zsZ7MEQ==",
   "success": true,
   "projectFilePath": "D:\\Semester-8\\movie-ticket-booking-backend\\movie-ticket-booking\\movie-ticket-booking.csproj",
   "expectedPackageFiles": [
@@ -75,6 +75,8 @@
     "C:\\Users\\Dell\\.nuget\\packages\\mimekit\\4.4.0\\mimekit.4.4.0.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\Dell\\.nuget\\packages\\npgsql\\7.0.6\\npgsql.7.0.6.nupkg.sha512",
+    "C:\\Users\\Dell\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\7.0.11\\npgsql.entityframeworkcore.postgresql.7.0.11.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\portable.bouncycastle\\1.9.0\\portable.bouncycastle.1.9.0.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\razorpay\\3.1.1\\razorpay.3.1.1.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using movie_ticket_booking.Helper;
 using movie_ticket_booking.Models;
 using movie_ticket_booking.Models.EmailService;
 using movie_ticket_booking.Services;
@@ -19,13 +20,13 @@ builder.WebHost.UseUrls($"http://*:{port}");
 
 builder.Services.AddControllers();
 
+//Service for Sending mails
 builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
 builder.Services.AddTransient<IMailService, MailService>();
 
 //EntityFrameWork Connection String Configuration
 builder.Services.AddDbContextPool<ApplicationDbContext>(opt =>
-    opt.UseSqlServer(builder.Configuration.GetConnectionString("MovieTicketDbConnection"))
-);
+    opt.UseNpgsql(ConnectionHelper.GetConnectionString(builder.Configuration)));
 
 //IdentityRole Configuration
 builder.Services.AddIdentity<User, IdentityRole>()
@@ -65,6 +66,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+//For migration
+var scope = app.Services.CreateScope();
+await DataHelper.ManageDataAsync(scope.ServiceProvider);
 
 app.UseCors(
     policy => policy.AllowAnyHeader().
