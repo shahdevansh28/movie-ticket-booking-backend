@@ -35,16 +35,18 @@ namespace movie_ticket_booking.Controllers
         }
         [HttpGet]
         [Route("get-showtime-by-movie")]
-        public async Task<IEnumerable<IGrouping<long, ShowTime>>> GetShowTimesByMovie(long id,DateTime date)
+        public async Task<IEnumerable<IGrouping<long, ShowTime>>> GetShowTimesByMovie(long id,DateOnly date)
         {
-           /* if (_applicationDbContext.ShowTimes == null)
-            {
-                return NotFound();
-            }*/
+            /* if (_applicationDbContext.ShowTimes == null)
+             {
+                 return NotFound();
+             }*/
             //I have movie id
             //id startTime endTime movieId 
+           // var tmp = new DateTime(date);
+           
 
-            var showTimeByMovieId = _applicationDbContext.ShowTimes.Where(x => x.MovieId == id && x.ShowDate == date);
+            var showTimeByMovieId = _applicationDbContext.ShowTimes.Where(x => x.MovieId == id && x.ShowDate == date).ToList();
 
             foreach (ShowTime showTime in showTimeByMovieId)
             {

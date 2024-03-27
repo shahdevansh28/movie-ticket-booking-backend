@@ -6,7 +6,7 @@ namespace movie_ticket_booking.Models
     {
         public long Id { get; set; }
         [Required]
-        public DateTime ShowDate { get; set; }
+        public DateOnly ShowDate { get; set; }
         [Required]
         public DateTime StartTime { get; set; }
         [Required]
