@@ -74,7 +74,7 @@ namespace movie_ticket_booking.Controllers
 
                     var bookedTicket = new Booking
                     {
-                        BookingDate = DateTime.Now,
+                        BookingDate = DateOnly.FromDateTime(DateTime.Now),
                         SeatId = TotalAvailableSeats.Where(x => x.Row == seat.row && x.Number == seat.number).FirstOrDefault().Id,
                         ShowTimeId = bookingDTO.showTimeId,
                         /*UserId = userId*/

@@ -8,7 +8,7 @@ namespace movie_ticket_booking.Models
         public long Id { get; set; }
         //public double TotalPrice { get; set; }
         [Required]
-        public DateTime BookingDate { get; set; }
+        public DateOnly BookingDate { get; set; }
         [Required]
         public string Receipt { get; set; }
         public long? SeatId { get; set; }
