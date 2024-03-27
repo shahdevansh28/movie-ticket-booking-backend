@@ -121,7 +121,7 @@ namespace movie_ticket_booking.Controllers
             BookingOrder bookingOrder = new BookingOrder()
             {
                 RazorpayOrderID = order["id"],
-                OrderDate = DateTime.Now,
+                OrderDate = DateOnly.FromDateTime(DateTime.Now),
                 TotalAmount = orderReqDTO.TotalAmount,
                 Status = "Created",
                 Receipt = orderReqDTO.TransactionID,

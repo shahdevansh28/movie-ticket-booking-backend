@@ -13,7 +13,7 @@ namespace movie_ticket_booking.Models
         [Required]
         public string? Receipt { get; set; }
         [Required]
-        public DateTime OrderDate { get; set; }
+        public DateOnly OrderDate { get; set; }
         [Required]
         public double TotalAmount { get; set; }
         public string UserId { get; set; }
