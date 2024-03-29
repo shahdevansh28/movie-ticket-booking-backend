@@ -35,6 +35,10 @@ builder.Services.AddIdentity<User, IdentityRole>()
     .AddRoles<IdentityRole>()
     .AddDefaultTokenProviders();
 
+//Add Config for required email
+builder.Services.Configure<IdentityOptions>(
+    opts => opts.SignIn.RequireConfirmedEmail = true);
+
 //Adding Authentication Cofiguration
 builder.Services.AddAuthentication(
     option =>

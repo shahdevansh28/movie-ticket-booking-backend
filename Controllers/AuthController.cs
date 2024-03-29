@@ -44,6 +44,7 @@ namespace movie_ticket_booking.Controllers
         public async Task<IActionResult> Register([FromBody] RegisterDTO model)
         {
             var userExist = await userManager.FindByNameAsync(model.Username);
+            //User already exists
             if (userExist != null)
                 return StatusCode(StatusCodes.Status409Conflict, new Models.DTO.Response() { Status = "Error", Message = "User Already Exist" });
 
@@ -69,8 +70,21 @@ namespace movie_ticket_booking.Controllers
             if (await roleManager.RoleExistsAsync(UserRoles.User))
                 await userManager.AddToRoleAsync(user,UserRoles.User);
 
+            //Add token to verify email...
+            var token = await userManager.GenerateEmailConfirmationTokenAsync(user);
 
-            //generate verification code
+            var link = Url.Action(nameof(ConfirmEmail), "Auth", new { token, email = user.Email }, Request.Scheme);
+            /*Url.Action(nameof(ConfirmEmail), "Auth", new { token, email = user.Email });*/
+
+            MailRequest mailRequest = new MailRequest();
+            mailRequest.ToEmail = user.Email;
+            mailRequest.Subject = "Verification Link";
+            mailRequest.Body = link;
+
+            await mailService.SendEmailAsync(mailRequest);
+
+            //Verification code based verification
+            /*//generate verification code
             Random verificationCode = new Random();
             int code = verificationCode.Next(10000000, 99999999);
 
@@ -81,8 +95,26 @@ namespace movie_ticket_booking.Controllers
             mailRequest.Body = "Your verification code is " + user.SecurityStamp[..8];
 
             await mailService.SendEmailAsync(mailRequest);
-
+*/
             return Ok(new Models.DTO.RegisterResponseDTO() { Email = user.Email, Status = "200" });
+        }
+        [HttpGet("ConfirmEmail")]
+        public async Task<IActionResult> ConfirmEmail(string token, string email)
+        {
+            var user = await userManager.FindByEmailAsync(email);
+            if (user != null)
+            {
+                var result = await userManager.ConfirmEmailAsync(user, token);
+                if (result.Succeeded)
+                {
+                    return StatusCode(StatusCodes.Status200OK, new Models.DTO.Response { Message = "Email verified", Status = "200" });
+                }
+            }
+            else
+            {
+                return StatusCode(StatusCodes.Status204NoContent);
+            }
+            return StatusCode(StatusCodes.Status500InternalServerError);
         }
 
         [HttpPost]
@@ -160,7 +192,7 @@ namespace movie_ticket_booking.Controllers
         public async Task<IActionResult> Login([FromBody] LoginDTO model)
         {
             var user = await userManager.FindByNameAsync(model.Username);
-            if (user != null && await userManager.CheckPasswordAsync(user, model.Password))
+            if (user != null && await userManager.CheckPasswordAsync(user, model.Password) && user.EmailConfirmed == true)
             {
                 var userRoles = await userManager.GetRolesAsync(user);
                 var authClaims = new List<Claim>
