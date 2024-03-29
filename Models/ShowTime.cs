@@ -14,7 +14,10 @@ namespace movie_ticket_booking.Models
         [Required]
         public int Amount { get; set; }
         [Required]
-        public int Capacity { get; set; }
+        public int row { get; set; }
+        [Required]
+        public int column { get; set; }
+        //public int Capacity { get; set; }
         //Movie Id foregin key
         public long MovieId { get; set; }
         public Movie? Movie { get; set; }

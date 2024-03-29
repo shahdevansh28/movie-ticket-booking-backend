@@ -81,6 +81,23 @@ namespace movie_ticket_booking.Controllers
             }
             _applicationDbContext.Add(show);
             await _applicationDbContext.SaveChangesAsync();
+            for (int i = 1; i <= show.row; i++)
+            {
+                for (int j = 1; j <= show.column; j++)
+                {
+                    var seatObj = new Seat()
+                    {
+                        Row = i,
+                        Number = j,
+                        ShowTimeId = show.Id,
+                        IsAvailable = true
+                    };
+                    _applicationDbContext.Add(seatObj);
+                }
+            }
+            await _applicationDbContext.SaveChangesAsync();
+
+           
 
             return CreatedAtAction("GetShowTime", new { id = show.Id }, show);
         }

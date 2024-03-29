@@ -38,13 +38,13 @@ namespace movie_ticket_booking.Controllers
 
         }
 
-        /*[Authorize]
+       /* [Authorize]*/
         [Route("api/getBookingByUser")]
         [HttpGet]
-        public async Task<ActionResult<List<Booking>>> GetBookingByUser(string userId)
+        public async Task<ActionResult<List<BookingOrder>>> GetBookingByUser(string userId)
         {
-            return await _applicationDbContext.Bookings.Where(x => x.UserId == userId).ToListAsync();
-        }*/
+            return await _applicationDbContext.BookingOrders.Where(x => x.UserId == userId).ToListAsync();
+        }
 
 
         [Authorize]
