@@ -82,8 +82,6 @@ namespace movie_ticket_booking.Controllers
                     };
                     totalPrice += amount;
                     selectedBooking.Add(bookedTicket);
-                   // _applicationDbContext.Bookings.Add(bookedTicket);
-                    //await _applicationDbContext.SaveChangesAsync();
                 }
                 else
                 {
@@ -91,10 +89,6 @@ namespace movie_ticket_booking.Controllers
                 }
 
             }
-
-            //create razorpay order
-            //get razorpay order id
-            //add into order table id{PK},razorpayOrderID,Date,totalAmount,userId)
 
             return Ok(new BookingResponseDTO() { selectedSeats = selectedBooking, TotalAmount = totalPrice, TransactionID = TransactionID, Message = "Seats are available, Do the Payment", Status = 200 });
         }

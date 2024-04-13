@@ -47,7 +47,6 @@ namespace movie_ticket_booking.Controllers
             //User already exists
             if (userExist != null)
                 return StatusCode(StatusCodes.Status409Conflict, new Models.DTO.Response() { Status = "Error", Message = "User Already Exist" });
-
             User user = new User()
             {
                 Email = model.Email,
@@ -72,9 +71,7 @@ namespace movie_ticket_booking.Controllers
 
             //Add token to verify email...
             var token = await userManager.GenerateEmailConfirmationTokenAsync(user);
-
             var link = Url.Action(nameof(ConfirmEmail), "Auth", new { token, email = user.Email }, Request.Scheme);
-            /*Url.Action(nameof(ConfirmEmail), "Auth", new { token, email = user.Email });*/
 
             MailRequest mailRequest = new MailRequest();
             mailRequest.ToEmail = user.Email;
@@ -83,19 +80,6 @@ namespace movie_ticket_booking.Controllers
 
             await mailService.SendEmailAsync(mailRequest);
 
-            //Verification code based verification
-            /*//generate verification code
-            Random verificationCode = new Random();
-            int code = verificationCode.Next(10000000, 99999999);
-
-            //send an email with verification code
-            MailRequest mailRequest = new MailRequest();
-            mailRequest.ToEmail = user.Email;
-            mailRequest.Subject = "Verification Code";
-            mailRequest.Body = "Your verification code is " + user.SecurityStamp[..8];
-
-            await mailService.SendEmailAsync(mailRequest);
-*/
             return Ok(new Models.DTO.RegisterResponseDTO() { Email = user.Email, Status = "200" });
         }
         [HttpGet("ConfirmEmail")]
